@@ -10,9 +10,10 @@ public enum ActionSource {
         ActionSource ac = ActionSource.Up;
         switch (action){
             case Up -> ac = ActionSource.Down;
-            case Down -> ac = ActionSource.Up;
             case Right -> ac = ActionSource.Left;
             case Left -> ac = ActionSource.Right;
+//            چون مقدار پیشفرض همین مقدار است نیازی به نوشتن نداریم. در حقیقت مقدار اولیه تغییر نمیکند.
+//            case Down -> ac = ActionSource.Up;
         }
         return ac;
     }

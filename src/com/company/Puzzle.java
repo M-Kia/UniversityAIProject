@@ -1,7 +1,5 @@
 package com.company;
 
-import com.company.ActionSource;
-
 import java.util.*;
 
 public class Puzzle {
@@ -20,15 +18,10 @@ public class Puzzle {
     public int[] state;
     public int cost;
 
-//    // چک کردن برابر بودن حالت های یک پازل
-//    public boolean equalsTo(Puzzle p) {
-//        return Arrays.equals(this.state, p.state);
-//    }
-
     // متد سازنده 1
     public Puzzle(int[] p) {
         this.state = Arrays.copyOf(p, p.length);
-        cost = this.calculateCost();
+        this.cost = this.calculateCost();
     }
 
     // متد سازنده 2
@@ -38,7 +31,7 @@ public class Puzzle {
 
     // متد حرکت دادن و جابه جا کردن کاشی صفر با کاشی اطرافش
     public void Move(ActionSource action, int... num) {
-        int zeroPlace = -1;
+        int zeroPlace;
         if (num.length == 0) {
             zeroPlace = findZero();
         } else zeroPlace = num[0];
@@ -74,14 +67,6 @@ public class Puzzle {
         return sum;
     }
 
-//    public int missingPuzzlesCount() {
-//        int result = 0;
-//        for (int i = 0; i < this.state.length; i++) {
-//            if (i != defaultPlaces.get(this.state[i]).get("index")) result++;
-//        }
-//        return result;
-//    }
-
     // تابع محاسبه هزینه رسیدن کاشی به هحل اصلی اش
     public static int findMinMove(int value, int index) {
         if (defaultPlaces.get(value).get("index") == index) return 0;
@@ -96,7 +81,7 @@ public class Puzzle {
 
     // چک کردن حرکات های موجود برای اندیس مربوطه
     public List<ActionSource> checkMovementAbility(int... num) {
-        int zeroPlace = -1;
+        int zeroPlace;
         if (num.length == 0) {
             zeroPlace = findZero();
         } else zeroPlace = num[0];

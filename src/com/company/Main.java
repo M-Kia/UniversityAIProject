@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[] temp = new int[]{7, 2, 4, 5, 0, 6, 8, 3, 1};
+//        int[] temp = new int[]{7, 2, 4, 5, 0, 6, 8, 3, 1};
 //        int[] temp = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 0};
-//        int[] temp = new int[]{1,2,3,4,5,6,8,7,0};
+        int[] temp = new int[]{1, 2, 0, 7, 8, 6, 5, 4, 3};
         Solver solver = new Solver(temp);
 //        List<Node> history = solver.getHistory();
         Node node = solver.solve();
@@ -41,7 +41,7 @@ public class Main {
                 System.out.println(ex.getMessage());
             }
         }
-        if (true) {
+        if (false) {
             String s = makeStringJson(history.get(0));
             try {
                 FileWriter file = new FileWriter(filename + "1.json");
@@ -63,6 +63,8 @@ public class Main {
                 System.out.println(ex.getMessage());
             }
         }
+
+        System.out.println("Finish");
     }
 
     public static String makeStringJson(Node n){

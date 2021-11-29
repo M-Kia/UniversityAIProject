@@ -1,23 +1,18 @@
 package com.company;
 
-import jdk.jfr.Label;
-
 import java.util.*;
 
 public class Solver {
+    // لیست صف اولویت
     protected List<Node> queue = new ArrayList<>();
+    // لیست تاریخچه گره های انتخاب شده
     protected List<Node> history = new ArrayList<>();
 
     // گرفتن تاریخچه
     public List<Node> getHistory() {
         return history;
     }
-
-    // گرفتن حرکات
-    public List<Node> getQueue() {
-        return queue;
-    }
-
+    // متد سازنده
     public Solver(int[] p) {
         queue.add(new Node(new Puzzle(p)));
     }
@@ -35,9 +30,10 @@ public class Solver {
                 queue.addAll(temp.explore());
             }
             queue.sort((n1, n2) -> {
+                int x1 = n1.puzzle.cost + n1.depth, x2 = n2.puzzle.cost + n2.depth;
                 // مرتب کردن بر اساس تابع f
-                if ((n1.puzzle.cost + n1.depth) > (n2.puzzle.cost + n2.depth)) return 1;
-                if ((n1.puzzle.cost + n1.depth) < (n2.puzzle.cost + n2.depth)) return -1;
+                if (x1 > x2) return 1;
+                if (x1 < x2) return -1;
                 // در صورت برابر بودن f، بر اساس هزینه گره مرتب می شوند.
                 if (n1.puzzle.cost > n2.puzzle.cost) return 1;
                 if (n1.puzzle.cost < n2.puzzle.cost) return -1;
