@@ -19,6 +19,7 @@ public class Main {
                 int[] temp = makeArray(input.replace(" ", "").toCharArray());
                 Solver solver = new Solver(temp);
                 solver.solve();
+                System.out.println();
                 System.out.println(solver);
                 break;
             } catch (Exception ex) {
