@@ -31,12 +31,10 @@ public class Puzzle {
     }
 
     public int[] state;
-    public int cost;
 
     // متد سازنده 1
     public Puzzle(int[] p) {
         this.state = Arrays.copyOf(p, p.length);
-        this.cost = this.calculateCost();
     }
 
     // متد سازنده 2

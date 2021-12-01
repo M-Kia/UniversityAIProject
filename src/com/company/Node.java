@@ -13,6 +13,8 @@ public class Node {
     public Puzzle puzzle;
     // عمق گره
     public int depth;
+    // هزینه با تابع h2
+    public int cost;
 
     // متد سازنده 1
     public Node(Puzzle p, Node pn, ActionSource la) {
@@ -20,6 +22,7 @@ public class Node {
         this.parentNode = pn;
         this.puzzle = new Puzzle(p);
         this.depth = (pn != null) ? pn.depth + 1 : 0;
+        this.cost = this.puzzle.calculateCost();
     }
 
     // متد سازنده 2
