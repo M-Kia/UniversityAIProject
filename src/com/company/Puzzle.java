@@ -3,7 +3,7 @@ package com.company;
 import java.util.*;
 
 public class Puzzle {
-    protected static final Map<Integer, Map<String, Integer>> defaultPlaces = Map.of(
+    protected static Map<Integer, Map<String, Integer>> goalState = Map.of(
             0, Map.of("index", 8, "column", 1, "row", 2),
             1, Map.of("index", 0, "column", 0, "row", 0),
             2, Map.of("index", 1, "column", 1, "row", 0),
@@ -14,6 +14,21 @@ public class Puzzle {
             7, Map.of("index", 6, "column", 0, "row", 2),
             8, Map.of("index", 7, "column", 1, "row", 2)
     );
+
+    public static void setGoalState(int[] goal) {
+        Map<Integer, Map<String, Integer>> map = new HashMap<>();
+        Map<String, Integer> temp;
+        for (int i = 0; i < goal.length; i++) {
+            if (goal[i] < 0 || goal[i] > 8 || map.get(goal[i]) != null)
+                return;
+            temp = new HashMap<>();
+            temp.put("index", i);
+            temp.put("column", i % 3);
+            temp.put("row", Math.floorDiv(i, 3));
+            map.put(goal[i], temp);
+        }
+        goalState = map;
+    }
 
     public int[] state;
     public int cost;
@@ -69,12 +84,12 @@ public class Puzzle {
 
     // تابع محاسبه هزینه رسیدن کاشی به هحل اصلی اش
     public static int findMinMove(int value, int index) {
-        if (defaultPlaces.get(value).get("index") == index) return 0;
+        if (goalState.get(value).get("index") == index) return 0;
         int rowIndex = Math.floorDiv(index, 3);
-        int temp = defaultPlaces.get(value).get("row") - rowIndex;
+        int temp = goalState.get(value).get("row") - rowIndex;
         int h = Math.abs(temp);
         temp = index + (temp * 3);
-        temp = defaultPlaces.get(value).get("index") - temp;
+        temp = goalState.get(value).get("index") - temp;
         h += Math.abs(temp);
         return h;
     }
