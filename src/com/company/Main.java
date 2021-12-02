@@ -7,9 +7,6 @@ public class Main {
     public static void main(String[] args) {
         while (true) {
             try {
-//                int[] temp = new int[]{7, 2, 4, 5, 0, 6, 8, 3, 1};
-//                int[] temp = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 0};
-//                int[] temp = new int[]{5, 7, 4, 2, 0, 3, 1, 8, 6};
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Please Enter Goal State(like '1 2 3 4 5 6 7 8 0')");
                 String input = sc.nextLine();
